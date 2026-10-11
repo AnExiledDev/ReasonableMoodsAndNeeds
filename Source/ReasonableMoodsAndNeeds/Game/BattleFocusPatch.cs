@@ -24,6 +24,7 @@ namespace ReasonableMoodsAndNeeds.Game
         private static BattleFocusSettings settings = new BattleFocusSettings();
         private static int windowTicks = 1;
         private static bool isPatched;
+        private static bool hasReportedMissingTarget;
 
         public static void Configure(Harmony harmony, ThoughtCatalog catalog, BattleFocusSettings current)
         {
@@ -36,6 +37,10 @@ namespace ReasonableMoodsAndNeeds.Game
 
             if (Target == null)
             {
+                if (hasReportedMissingTarget)
+                    return;
+
+                hasReportedMissingTarget = true;
                 Log.Error("[Reasonable Moods and Needs] MemoryThoughtHandler.TryGainMemory(Thought_Memory, Pawn) was not found; battle focus is disabled.");
                 return;
             }
@@ -60,6 +65,10 @@ namespace ReasonableMoodsAndNeeds.Game
 
             if (pawn == null || !pawn.IsColonist || !IsInCombat(pawn))
                 return true;
+
+            // CurStage can depend on the owning pawn, and vanilla only assigns it after this prefix runs.
+            // It assigns the same pawn a line later, so setting it early changes nothing else.
+            newThought.pawn = pawn;
 
             var stage = newThought.CurStage;
 

@@ -79,6 +79,17 @@ namespace ReasonableMoodsAndNeeds.Tests
         }
 
         [Fact]
+        public void Equal_priority_ties_go_to_the_rule_listed_first()
+        {
+            var rest = new CategoryRule(CategoryIds.Rest, 70, defNameContains: new[] { "Sleep" });
+            var children = new CategoryRule(CategoryIds.Children, 70, defNameContains: new[] { "Sleep" });
+            var thought = Thought("BabySleepDisturbed");
+
+            Assert.Equal(CategoryIds.Rest, new ThoughtClassifier(new[] { rest, children }).Classify(thought));
+            Assert.Equal(CategoryIds.Children, new ThoughtClassifier(new[] { children, rest }).Classify(thought));
+        }
+
+        [Fact]
         public void Without_a_fallback_rule_other_is_still_used()
         {
             var classifier = new ThoughtClassifier(new[] { new CategoryRule(CategoryIds.Food, 1, defNameContains: new[] { "Ate" }) });

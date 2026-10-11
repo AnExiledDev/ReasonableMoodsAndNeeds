@@ -67,6 +67,24 @@ namespace ReasonableMoodsAndNeeds.Core
 
         public float DurationDays { get; }
 
+        /// <summary>
+        /// False when every stage is 0 mood and 0 opinion in XML. Those thoughts get their value from code
+        /// (OpinionOfMyLover, HardWorkerVsLazy), so scaling or muting the stages would change nothing.
+        /// </summary>
+        public bool IsTunable
+        {
+            get
+            {
+                for (var i = 0; i < Stages.Count; i++)
+                {
+                    if (Stages[i].Mood != 0f || Stages[i].Opinion != 0f)
+                        return true;
+                }
+
+                return false;
+            }
+        }
+
         public bool HasNegativeMood
         {
             get

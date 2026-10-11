@@ -56,7 +56,7 @@ namespace ReasonableMoodsAndNeeds.UI
         private void DrawBreakList(Rect rect, BreakTuning tuning)
         {
             var breaks = catalogs.Breaks.Breaks;
-            var view = new Rect(0f, 0f, rect.width - 16f, breaks.Count * (Ui.SliderHeight + 2f));
+            var view = new Rect(0f, 0f, rect.width - 8f - 16f, breaks.Count * (Ui.SliderHeight + 2f));
             var y = 0f;
 
             Widgets.DrawMenuSection(rect);

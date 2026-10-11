@@ -27,13 +27,13 @@ This was the part I cared about most. A lot of mods check things far more often 
 
 This one rewrites the thought, break and need definitions once at startup and again whenever you close the settings window. After that the game reads its own fields like it always does, so during play the mod costs nothing per tick. Dragging sliders doesn't touch the game either, the work happens once when the window closes.
 
-The only Harmony patch is battle focus. It only runs when a pawn gains a memory, and it starts with a single array lookup that most memories never get past. If battle focus is off the patch isn't installed at all. [docs/performance.md](docs/performance.md) has the details.
+The only Harmony patch is battle focus. It only runs when a pawn gains a memory, and it starts with a single array lookup that most memories never get past. It's on in the Reasonable preset, which is the default, so most people will have the patch. Turn battle focus off and the patch is removed entirely. [docs/performance.md](docs/performance.md) has the details.
 
 ## Status
 
 It compiles clean against the 1.6 reference assemblies and the core logic has unit tests, but it hasn't been run inside the game yet. I'm testing it on my own PC before it goes on the Workshop, using [docs/testing-checklist.md](docs/testing-checklist.md). Odyssey's thoughts weren't part of the data the categories were tuned against, so expect a few of those to land in "everything else" for now.
 
-Nothing gets written into your save, so you can add it to an existing colony, and removing it puts every number back on the next launch.
+You can add it to an existing colony. Removing it puts the thought, break and need numbers back to vanilla on the next launch. One thing does stick: a social memory (an insult, a nice chat) stores its opinion value in your save when it's created. So changing the opinion sliders only affects new social memories, and the ones made while the mod was on keep their tuned value until they fade.
 
 ## Install
 

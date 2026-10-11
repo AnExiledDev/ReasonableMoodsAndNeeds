@@ -64,6 +64,8 @@ namespace ReasonableMoodsAndNeeds.UI
             if (isDirty)
                 Refilter();
 
+            DrawShownCount(new Rect(rect.x + 228f, rect.y + FilterHeight, 200f, Ui.RowHeight));
+
             var listTop = rect.y + FilterHeight * 2f + Ui.Gap;
             var listRect = new Rect(rect.x, listTop, rect.width, rect.height - (listTop - rect.y) - EditorHeight - Ui.Gap);
 
@@ -116,17 +118,18 @@ namespace ReasonableMoodsAndNeeds.UI
                 isDirty = true;
             }
 
-            var countRect = new Rect(second.x + 228f, second.y, 200f, second.height);
-
-            Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(countRect, "RMN.ShownCount".Translate(shown.Count, catalogs.Thoughts.Entries.Count));
-            Text.Anchor = TextAnchor.UpperLeft;
-
             if (Widgets.ButtonText(second.RightPartPixels(150f), "RMN.Bulk.Reset".Translate()))
                 Ui.Confirm("RMN.Bulk.ResetConfirm".Translate(shown.Count), () => Bulk(null));
 
             if (Widgets.ButtonText(new Rect(second.xMax - 308f, second.y, 150f, second.height), "RMN.Bulk.Mute".Translate()))
                 Ui.Confirm("RMN.Bulk.MuteConfirm".Translate(shown.Count), () => Bulk(ThoughtOverride.Muted.Instance));
+        }
+
+        private void DrawShownCount(Rect rect)
+        {
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(rect, "RMN.ShownCount".Translate(shown.Count, catalogs.Thoughts.Entries.Count));
+            Text.Anchor = TextAnchor.UpperLeft;
         }
 
         private void DrawList(Rect rect)
@@ -174,19 +177,15 @@ namespace ReasonableMoodsAndNeeds.UI
             Widgets.Label(header.LeftPart(0.5f), selected.Facts.Label + "  (" + catalogs.Thoughts.LabelOf(selected.CategoryId) + ")");
             Text.Anchor = TextAnchor.UpperLeft;
 
-            var modeRect = header.RightPartPixels(360f);
-
-            if (Widgets.ButtonText(Ui.Third(modeRect, 0), "RMN.Thought.Inherit".Translate()))
-                SetOverride(defName, null);
-
-            if (Widgets.ButtonText(Ui.Third(modeRect, 1), "RMN.Thought.Custom".Translate()))
-                SetOverride(defName, new ThoughtOverride.Custom(mod.Profile.CategoryOrIdentity(selected.CategoryId).Clone()));
-
-            if (Widgets.ButtonText(Ui.Third(modeRect, 2), "RMN.Thought.Mute".Translate()))
-                SetOverride(defName, ThoughtOverride.Muted.Instance);
-
             var body = new Rect(inner.x, header.yMax + 4f, inner.width, inner.height - Ui.RowHeight - 4f);
 
+            if (!selected.Facts.IsTunable)
+            {
+                Widgets.Label(body, "RMN.Thought.CodeComputed".Translate());
+                return;
+            }
+
+            DrawModeButtons(header.RightPartPixels(360f), selected);
             mod.Profile.Thoughts.TryGetValue(defName, out var current);
 
             switch (current)
@@ -203,6 +202,22 @@ namespace ReasonableMoodsAndNeeds.UI
             }
         }
 
+        private void DrawModeButtons(Rect rect, ThoughtEntry entry)
+        {
+            var defName = entry.Def.defName;
+            var isCustom = mod.Profile.Thoughts.TryGetValue(defName, out var current) && current is ThoughtOverride.Custom;
+
+            if (Widgets.ButtonText(Ui.Third(rect, 0), "RMN.Thought.Inherit".Translate()))
+                SetOverride(defName, null);
+
+            // Pressing Custom again must not throw away values the player already dialled in.
+            if (Widgets.ButtonText(Ui.Third(rect, 1), "RMN.Thought.Custom".Translate()) && !isCustom)
+                SetOverride(defName, new ThoughtOverride.Custom(mod.Profile.CategoryOrIdentity(entry.CategoryId).Clone()));
+
+            if (Widgets.ButtonText(Ui.Third(rect, 2), "RMN.Thought.Mute".Translate()))
+                SetOverride(defName, ThoughtOverride.Muted.Instance);
+        }
+
         private void SetOverride(string defName, ThoughtOverride? value)
         {
             if (value == null)
@@ -217,6 +232,9 @@ namespace ReasonableMoodsAndNeeds.UI
         {
             foreach (var entry in shown)
             {
+                if (value != null && !entry.Facts.IsTunable)
+                    continue;
+
                 if (value == null)
                     mod.Profile.Thoughts.Remove(entry.Def.defName);
                 else

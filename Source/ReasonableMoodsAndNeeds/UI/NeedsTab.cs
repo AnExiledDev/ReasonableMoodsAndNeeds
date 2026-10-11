@@ -47,8 +47,8 @@ namespace ReasonableMoodsAndNeeds.UI
         private void DrawSeekers(Rect rect, NeedTuning needs)
         {
             var seekers = catalogs.Needs.Seekers;
-            var perSeeker = Ui.RowHeight + (Ui.SliderHeight + 2f) * 2f + Ui.Gap;
-            var view = new Rect(0f, 0f, rect.width - 16f, seekers.Count * perSeeker);
+            var perSeeker = (Ui.RowHeight + 2f) + (Ui.SliderHeight + 2f) * 2f + Ui.Gap;
+            var view = new Rect(0f, 0f, rect.width - 8f - 16f, seekers.Count * perSeeker);
             var y = 0f;
 
             Widgets.DrawMenuSection(rect);

@@ -38,4 +38,6 @@ Each item is an assumption the code makes that only the game can confirm.
 11. **Clicks.** In the Thoughts tab, click a row and confirm the editor opens for it. Rows use `Widgets.ButtonInvisible`.
 12. **Clipboard.** Copy settings, change something, paste them back, and confirm the change is undone.
 13. **Removal.** Save, quit, disable the mod, load the save. No errors, vanilla values back.
-14. **Odyssey.** With Odyssey active, use "Copy thought list" and send the table back so the categories can be tuned for it.
+14. **Code-computed thoughts.** Find "Incestuous" or "Opinion of my lover" in the Thoughts tab. The row should read "set by code", the editor should have no Mute button, and Bulk mute on a filter that includes it should leave it unmuted.
+15. **Social memories.** Halve social opinion, have someone insult a colonist, and check the opinion hit in the social tab is halved. Set opinion back to 1x and insult again. The old memory should keep the halved value and the new one should be full.
+16. **Odyssey.** With Odyssey active, use "Copy thought list" and send the table back so the categories can be tuned for it.

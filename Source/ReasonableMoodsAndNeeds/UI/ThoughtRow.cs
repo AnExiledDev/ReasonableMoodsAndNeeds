@@ -22,18 +22,19 @@ namespace ReasonableMoodsAndNeeds.UI
             Widgets.Label(nameRect.ContractedBy(4f, 0f), entry.Facts.Label);
             GUI.color = Ui.Muted;
             Widgets.Label(vanillaRect, Describe(entry, entry.Facts.Stages, null));
-            GUI.color = tuning.IsMuted ? Ui.Muted : Ui.Changed;
-            Widgets.Label(tunedRect, tuning.IsMuted ? "RMN.Muted".Translate().ToString() : Describe(entry, entry.Facts.Stages, tuning));
+            GUI.color = tuning.IsMuted || !entry.Facts.IsTunable ? Ui.Muted : Ui.Changed;
+            Widgets.Label(tunedRect, TunedText(entry, tuning));
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
-            TooltipHandler.TipRegion(row, Tooltip(entry));
+            TooltipHandler.TipRegion(row, entry.Tooltip);
         }
 
-        public static string Tooltip(ThoughtEntry entry)
+        private static string TunedText(ThoughtEntry entry, ResolvedTuning tuning)
         {
-            var description = entry.DefDescription ?? (entry.StageDescriptions.Length > 0 ? entry.StageDescriptions[0] : null) ?? "";
+            if (!entry.Facts.IsTunable)
+                return "RMN.CodeComputedShort".Translate();
 
-            return entry.Facts.Label + "\n" + entry.Def.defName + " (" + entry.Facts.ModName + ")\n\n" + description;
+            return tuning.IsMuted ? "RMN.Muted".Translate().ToString() : Describe(entry, entry.Facts.Stages, tuning);
         }
 
         /// <summary>The mood range across stages, plus the opinion range for social thoughts. "-10" or "-10 to -2".</summary>

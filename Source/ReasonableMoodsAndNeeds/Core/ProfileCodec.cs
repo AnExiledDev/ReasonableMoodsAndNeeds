@@ -7,13 +7,17 @@ namespace ReasonableMoodsAndNeeds.Core
 {
     public sealed class DecodeResult
     {
-        public DecodeResult(TuningProfile profile, int problems)
+        public DecodeResult(TuningProfile profile, int problems, bool isProfile)
         {
             Profile = profile;
             Problems = problems;
+            IsProfile = isProfile;
         }
 
         public TuningProfile Profile { get; }
+
+        /// <summary>False when the text has no "v=" line, so it was never a profile (a URL, a chat message) and must not replace one.</summary>
+        public bool IsProfile { get; }
 
         /// <summary>Lines that were unreadable, unknown, or out of range. Out-of-range values are clamped, not dropped.</summary>
         public int Problems { get; }
@@ -64,6 +68,7 @@ namespace ReasonableMoodsAndNeeds.Core
         {
             var profile = new TuningProfile();
             var problems = 0;
+            var hasVersion = false;
 
             foreach (var raw in text.Split('\n'))
             {
@@ -73,18 +78,22 @@ namespace ReasonableMoodsAndNeeds.Core
                     continue;
 
                 var eq = line.IndexOf('=');
+                var key = eq > 0 ? line.Substring(0, eq).Trim() : "";
+                var isRead = eq > 0 && ReadLine(profile, key, line.Substring(eq + 1).Trim());
 
-                if (eq <= 0 || !ReadLine(profile, line.Substring(0, eq).Trim(), line.Substring(eq + 1).Trim()))
+                if (!isRead)
                     problems++;
+                else if (key == "v")
+                    hasVersion = true;
             }
 
-            return new DecodeResult(profile, problems);
+            return new DecodeResult(profile, problems, hasVersion);
         }
 
         private static bool ReadLine(TuningProfile profile, string key, string value)
         {
             if (key == "v")
-                return int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out _);
+                return int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var version) && version == Version;
 
             if (key == "ui.vanillaTips")
                 return ReadBool(value, b => profile.ShowVanillaInTooltips = b);

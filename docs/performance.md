@@ -26,7 +26,7 @@ Rewriting defs means the game's own code reads the tuned numbers through the fie
 
 ## The one patch
 
-`BattleFocusPatch` prefixes `MemoryThoughtHandler.TryGainMemory(Thought_Memory, Pawn)`. That method runs when a memory is gained, which is an event, not a tick. The patch is installed with `harmony.Patch` only when the feature is enabled and removed with `harmony.Unpatch` when it is turned off, so a player who never uses battle focus runs the game unpatched.
+`BattleFocusPatch` prefixes `MemoryThoughtHandler.TryGainMemory(Thought_Memory, Pawn)`. That method runs when a memory is gained, which is an event, not a tick. The patch is installed with `harmony.Patch` only when the feature is enabled and removed with `harmony.Unpatch` when it is turned off, so with battle focus off the game runs unpatched. It is on in the Reasonable and Relaxed presets, and Reasonable is what a first install gets, so most players run the patch. The cost per memory gained is the list below.
 
 Inside the prefix the order is cheapest first:
 

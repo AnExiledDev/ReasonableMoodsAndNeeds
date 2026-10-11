@@ -7,6 +7,7 @@
   <RMN.AppliesOnClose>Changes apply when you close this window. Nothing is recalculated while you drag sliders.</RMN.AppliesOnClose>
   <RMN.ResetTo>Reset to {0}</RMN.ResetTo>
   <RMN.Muted>muted</RMN.Muted>
+  <RMN.CodeComputedShort>set by code</RMN.CodeComputedShort>
   <RMN.OpinionShort>opinion</RMN.OpinionShort>
   <RMN.VanillaMood>Vanilla mood: {0}</RMN.VanillaMood>
   <RMN.VanillaOpinion>Vanilla opinion: {0}</RMN.VanillaOpinion>
@@ -40,6 +41,8 @@
   <RMN.Share.Export>Copy settings</RMN.Share.Export>
   <RMN.Share.Import>Paste settings</RMN.Share.Import>
   <RMN.Share.ImportConfirm>Replace all of your current settings with the ones on your clipboard?</RMN.Share.ImportConfirm>
+  <RMN.Share.ImportConfirmWithProblems>Replace all of your current settings with the ones on your clipboard? {0} line(s) could not be read and will be skipped or clamped.</RMN.Share.ImportConfirmWithProblems>
+  <RMN.Share.NotAProfile>The clipboard does not hold settings from this mod. Use "Copy settings" first.</RMN.Share.NotAProfile>
   <RMN.Share.Copied>Settings copied to the clipboard.</RMN.Share.Copied>
   <RMN.Share.Empty>The clipboard is empty.</RMN.Share.Empty>
   <RMN.Share.Imported>Settings pasted.</RMN.Share.Imported>
@@ -82,6 +85,7 @@
   <RMN.Thought.Custom>Custom</RMN.Thought.Custom>
   <RMN.Thought.Mute>Mute</RMN.Thought.Mute>
   <RMN.Thought.Inheriting>Follows the {0} category.</RMN.Thought.Inheriting>
+  <RMN.Thought.CodeComputed>The game works out this thought's mood or opinion in code, so this mod can't change or mute it.</RMN.Thought.CodeComputed>
   <RMN.Thought.IsMuted>Muted. This thought gives no mood or opinion and is hidden from the needs tab.</RMN.Thought.IsMuted>
 
   <!-- Mental breaks -->

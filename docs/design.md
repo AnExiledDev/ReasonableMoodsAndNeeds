@@ -45,7 +45,7 @@ Nothing is written into save files. Removing the mod restores vanilla on the nex
 2. Precept thoughts go to the category with `matchPrecepts`.
 3. `defNameContains`, case-insensitive, higher `priority` first.
 4. `fileNameContains` against the def's source file, same ordering.
-5. Trait or gene gated thoughts go to `matchTraitGated`.
+5. Thoughts with `requiredTraits` go to `matchTraitGated`. Gene requirements are not checked.
 6. Social thoughts go to `matchSocial`.
 7. Everything else goes to the `isFallback` category.
 
@@ -58,7 +58,7 @@ Other mods can add a `ThoughtCategoryDef` or patch a defName into an existing ca
 | Setting | Def field |
 |---|---|
 | Mood and opinion multipliers | `ThoughtStage.baseMoodEffect`, `baseOpinionOffset` |
-| Duration | `ThoughtDef.durationDays` (memories only) |
+| Duration | `ThoughtDef.durationDays` (every thought whose vanilla duration is above zero) |
 | Mute | stage effects to 0 and `visible` to false |
 | Break threshold | `StatDef MentalBreakThreshold.defaultBaseValue` |
 | Break length | `MentalStateDef` min and max ticks |

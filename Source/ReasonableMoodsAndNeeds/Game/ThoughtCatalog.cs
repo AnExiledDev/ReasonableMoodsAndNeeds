@@ -27,7 +27,14 @@ namespace ReasonableMoodsAndNeeds.Game
                 StageDescriptions[i] = stages[i]?.description;
                 StageVisible[i] = stages[i]?.visible ?? false;
             }
+
+            var description = DefDescription ?? (StageDescriptions.Length > 0 ? StageDescriptions[0] : null) ?? "";
+
+            Tooltip = facts.Label + "\n" + def.defName + " (" + facts.ModName + ")\n\n" + description;
         }
+
+        /// <summary>Built once here because the thought list draws it for every visible row on every frame.</summary>
+        public string Tooltip { get; }
 
         public ThoughtDef Def { get; }
 
@@ -53,6 +60,7 @@ namespace ReasonableMoodsAndNeeds.Game
         private readonly List<ThoughtEntry> entries = new List<ThoughtEntry>();
         private readonly List<ThoughtCategoryDef> categories;
         private readonly Dictionary<string, int> countByCategory = new Dictionary<string, int>(StringComparer.Ordinal);
+        private readonly HashSet<string> defNames = new HashSet<string>(StringComparer.Ordinal);
 
         public ThoughtCatalog()
         {
@@ -76,6 +84,7 @@ namespace ReasonableMoodsAndNeeds.Game
                 var categoryId = classifier.Classify(facts);
 
                 entries.Add(new ThoughtEntry(def, facts, categoryId, IsSocialMemory(def)));
+                defNames.Add(def.defName);
                 countByCategory[categoryId] = CountOf(categoryId) + 1;
             }
 
@@ -85,6 +94,9 @@ namespace ReasonableMoodsAndNeeds.Game
         public IReadOnlyList<ThoughtEntry> Entries => entries;
 
         public IReadOnlyList<ThoughtCategoryDef> Categories => categories;
+
+        /// <summary>False for overrides saved while a since-removed mod was loaded.</summary>
+        public bool Contains(string defName) => defNames.Contains(defName);
 
         public int CountOf(string categoryId) => countByCategory.TryGetValue(categoryId, out var n) ? n : 0;
 
@@ -130,7 +142,8 @@ namespace ReasonableMoodsAndNeeds.Game
 
                 stage.baseMoodEffect = tuned.Mood;
                 stage.baseOpinionOffset = tuned.Opinion;
-                stage.visible = entry.StageVisible[i] && !tuning.IsMuted;
+                // A code-computed thought has no stage values to zero, so muting it would hide a thought that still applies.
+                stage.visible = entry.StageVisible[i] && !(tuning.IsMuted && entry.Facts.IsTunable);
                 stage.description = Annotate(entry.StageDescriptions[i], note);
 
                 if (annotateDef)

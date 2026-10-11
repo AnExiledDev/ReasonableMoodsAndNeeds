@@ -92,7 +92,17 @@ namespace ReasonableMoodsAndNeeds.UI
 
             var result = ProfileCodec.Decode(text);
 
-            Ui.Confirm("RMN.Share.ImportConfirm".Translate(), () =>
+            if (!result.IsProfile)
+            {
+                Messages.Message("RMN.Share.NotAProfile".Translate(), MessageTypeDefOf.RejectInput, false);
+                return;
+            }
+
+            var question = result.Problems == 0
+                ? "RMN.Share.ImportConfirm".Translate()
+                : "RMN.Share.ImportConfirmWithProblems".Translate(result.Problems);
+
+            Ui.Confirm(question, () =>
             {
                 window.ReplaceProfile(result.Profile);
 
@@ -119,6 +129,7 @@ namespace ReasonableMoodsAndNeeds.UI
         {
             var profile = mod.Profile;
             var changedCategories = 0;
+            var overriddenThoughts = 0;
 
             foreach (var pair in profile.Categories)
             {
@@ -126,7 +137,13 @@ namespace ReasonableMoodsAndNeeds.UI
                     changedCategories++;
             }
 
-            return "RMN.Summary".Translate(catalogs.Thoughts.Entries.Count, changedCategories, profile.Thoughts.Count);
+            foreach (var defName in profile.Thoughts.Keys)
+            {
+                if (catalogs.Thoughts.Contains(defName))
+                    overriddenThoughts++;
+            }
+
+            return "RMN.Summary".Translate(catalogs.Thoughts.Entries.Count, changedCategories, overriddenThoughts);
         }
     }
 }

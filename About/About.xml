@@ -24,11 +24,11 @@ Every thought in the game gets sorted into one of 19 categories, food, sleep, co
 
 Past thoughts, you can move the mental break threshold, change how long breaks last, make any break more or less common or turn it off, and change which trait a break needs, so berserk can require Psychopath if you want. You can raise base mood and change how fast mood, beauty and comfort drift. There's also an optional battle focus, where drafted colonists and anyone who was just in a fight ignore small bad memories from the categories you pick.
 
-Four presets get you started: Vanilla, Light, Reasonable and Relaxed. Reasonable is the default and it's close to what the old mod did. Settings can be copied to the clipboard and pasted on another save or shared with someone else.
+Four presets get you started: Vanilla, Light, Reasonable and Relaxed. Reasonable is the default and it's close to what the old mod did. Settings can be copied to the clipboard and pasted back in later or shared with someone else.
 
 Performance was the main thing I cared about. Almost all of it works by rewriting the thought and break definitions once, when you close the settings window, so during play the game is just reading its own numbers and the mod costs nothing per tick. The only patch that runs in game is battle focus, it only fires when a pawn gains a memory, and it isn't installed at all while battle focus is off.
 
-Safe to add to an existing save. Removing it puts every number back to vanilla on the next launch, since nothing gets written into your save.
+Safe to add to an existing save. Removing it puts every number back to vanilla on the next launch. The one exception is opinion from social memories made while it was on. The game saves that number with the memory, so those keep their tuned value until they fade.
 
 Needs Harmony. Source is on GitHub under MIT.</description>
 </ModMetaData>

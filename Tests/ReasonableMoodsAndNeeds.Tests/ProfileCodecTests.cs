@@ -175,6 +175,28 @@ namespace ReasonableMoodsAndNeeds.Tests
         }
 
         [Fact]
+        public void Exported_settings_are_recognised_as_settings()
+        {
+            Assert.True(ProfileCodec.Decode(ProfileCodec.Encode(Presets.Build(PresetId.Reasonable))).IsProfile);
+        }
+
+        [Theory]
+        [InlineData("https://example.com/some/link")]
+        [InlineData("cat.death.moodNeg=0.5")]
+        public void Clipboard_text_without_a_version_line_is_not_settings(string text)
+        {
+            Assert.False(ProfileCodec.Decode(text).IsProfile);
+        }
+
+        [Fact]
+        public void Settings_from_an_unknown_format_version_are_not_accepted()
+        {
+            var future = ProfileCodec.Encode(Presets.Build(PresetId.Reasonable)).Replace("v=1", "v=2");
+
+            Assert.False(ProfileCodec.Decode(future).IsProfile);
+        }
+
+        [Fact]
         public void Building_a_preset_twice_gives_independent_copies()
         {
             var a = Presets.Build(PresetId.Reasonable);

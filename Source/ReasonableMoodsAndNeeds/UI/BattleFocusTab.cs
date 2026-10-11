@@ -48,7 +48,7 @@ namespace ReasonableMoodsAndNeeds.UI
         private void DrawCategories(Rect rect, BattleFocusSettings battle)
         {
             var categories = catalogs.Thoughts.Categories;
-            var view = new Rect(0f, 0f, rect.width - 16f, categories.Count * Ui.RowHeight);
+            var view = new Rect(0f, 0f, rect.width - 8f - 16f, categories.Count * Ui.RowHeight);
             var y = 0f;
 
             Widgets.DrawMenuSection(rect);

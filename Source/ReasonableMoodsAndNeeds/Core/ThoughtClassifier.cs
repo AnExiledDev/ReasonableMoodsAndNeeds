@@ -63,9 +63,26 @@ namespace ReasonableMoodsAndNeeds.Core
 
         public ThoughtClassifier(IEnumerable<CategoryRule> rules)
         {
-            byPriority = new List<CategoryRule>(rules);
-            byPriority.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+            byPriority = HigherPriorityFirst(rules);
             fallbackId = FindFallback(byPriority);
+        }
+
+        /// <summary>A stable sort: rules with equal priority keep the order they were given in, so ties never depend on List.Sort internals.</summary>
+        private static List<CategoryRule> HigherPriorityFirst(IEnumerable<CategoryRule> rules)
+        {
+            var indexed = new List<KeyValuePair<int, CategoryRule>>();
+
+            foreach (var rule in rules)
+                indexed.Add(new KeyValuePair<int, CategoryRule>(indexed.Count, rule));
+
+            indexed.Sort((a, b) =>
+            {
+                var byPriority = b.Value.Priority.CompareTo(a.Value.Priority);
+
+                return byPriority != 0 ? byPriority : a.Key.CompareTo(b.Key);
+            });
+
+            return indexed.ConvertAll(pair => pair.Value);
         }
 
         public string Classify(ThoughtFacts thought)
