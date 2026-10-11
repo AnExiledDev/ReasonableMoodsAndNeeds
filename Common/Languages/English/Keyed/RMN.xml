@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- General -->
+  <RMN.ModName>Reasonable Moods and Needs</RMN.ModName>
+  <RMN.NotReady>Settings are available once the game has finished loading.</RMN.NotReady>
+  <RMN.AppliesOnClose>Changes apply when you close this window. Nothing is recalculated while you drag sliders.</RMN.AppliesOnClose>
+  <RMN.ResetTo>Reset to {0}</RMN.ResetTo>
+  <RMN.Muted>muted</RMN.Muted>
+  <RMN.CodeComputedShort>set by code</RMN.CodeComputedShort>
+  <RMN.OpinionShort>opinion</RMN.OpinionShort>
+  <RMN.VanillaMood>Vanilla mood: {0}</RMN.VanillaMood>
+  <RMN.VanillaOpinion>Vanilla opinion: {0}</RMN.VanillaOpinion>
+  <RMN.VanillaMoodAndOpinion>Vanilla: {0} mood, {1} opinion</RMN.VanillaMoodAndOpinion>
+
+  <!-- Tabs -->
+  <RMN.Tab.Presets>Presets</RMN.Tab.Presets>
+  <RMN.Tab.Categories>Categories</RMN.Tab.Categories>
+  <RMN.Tab.Thoughts>Thoughts</RMN.Tab.Thoughts>
+  <RMN.Tab.Breaks>Mental breaks</RMN.Tab.Breaks>
+  <RMN.Tab.Needs>Needs</RMN.Tab.Needs>
+  <RMN.Tab.BattleFocus>Battle focus</RMN.Tab.BattleFocus>
+
+  <!-- Presets -->
+  <RMN.Presets.Intro>Pick a starting point, then tweak whatever you like in the other tabs. A preset replaces all of your current settings.</RMN.Presets.Intro>
+  <RMN.Preset.Vanilla>Vanilla</RMN.Preset.Vanilla>
+  <RMN.Preset.Vanilla.Desc>Everything exactly as the game ships it. Use this to start from scratch.</RMN.Preset.Vanilla.Desc>
+  <RMN.Preset.Light>Light</RMN.Preset.Light>
+  <RMN.Preset.Light.Desc>Takes the edge off. Bad thoughts are about 20% weaker, grief and social grudges fade a bit sooner, base mood +5.</RMN.Preset.Light.Desc>
+  <RMN.Preset.Reasonable>Reasonable</RMN.Preset.Reasonable>
+  <RMN.Preset.Reasonable.Desc>The original mod's idea. Bad thoughts are roughly halved and fade faster, breaks end sooner, base mood +10, beauty and comfort drain slower, berserk needs the psychopath trait, and battle focus is on.</RMN.Preset.Reasonable.Desc>
+  <RMN.Preset.Relaxed>Relaxed</RMN.Preset.Relaxed>
+  <RMN.Preset.Relaxed.Desc>For when you just want to build. Bad thoughts are about a third of vanilla, base mood +15, and colonists break at a lower mood.</RMN.Preset.Relaxed.Desc>
+  <RMN.Preset.Confirm>Replace all of your current settings with the {0} preset?</RMN.Preset.Confirm>
+  <RMN.Summary>{0} thoughts found. {1} categories changed, {2} thoughts with their own override.</RMN.Summary>
+  <RMN.VanillaTips>Show vanilla values in thought tooltips</RMN.VanillaTips>
+  <RMN.VanillaTipsTip>Adds a line like "Vanilla mood: -10" to the tooltip of any thought this mod changed.</RMN.VanillaTipsTip>
+
+  <!-- Sharing -->
+  <RMN.Share.Header>Share settings</RMN.Share.Header>
+  <RMN.Share.Export>Copy settings</RMN.Share.Export>
+  <RMN.Share.Import>Paste settings</RMN.Share.Import>
+  <RMN.Share.ImportConfirm>Replace all of your current settings with the ones on your clipboard?</RMN.Share.ImportConfirm>
+  <RMN.Share.ImportConfirmWithProblems>Replace all of your current settings with the ones on your clipboard? {0} line(s) could not be read and will be skipped or clamped.</RMN.Share.ImportConfirmWithProblems>
+  <RMN.Share.NotAProfile>The clipboard does not hold settings from this mod. Use "Copy settings" first.</RMN.Share.NotAProfile>
+  <RMN.Share.Copied>Settings copied to the clipboard.</RMN.Share.Copied>
+  <RMN.Share.Empty>The clipboard is empty.</RMN.Share.Empty>
+  <RMN.Share.Imported>Settings pasted.</RMN.Share.Imported>
+  <RMN.Share.ImportedWithProblems>Settings pasted, but {0} line(s) were unreadable or out of range and were skipped or clamped.</RMN.Share.ImportedWithProblems>
+  <RMN.Share.ThoughtList>Copy thought list</RMN.Share.ThoughtList>
+  <RMN.Share.ThoughtListCopied>Copied {0} thoughts as a table. Paste it into a bug report if a thought is in the wrong category.</RMN.Share.ThoughtListCopied>
+
+  <!-- Multiplier sliders -->
+  <RMN.MoodNegative>Bad mood</RMN.MoodNegative>
+  <RMN.MoodNegativeTip>Scales negative mood effects. x0.5 turns a -10 into a -5. x0 removes them.</RMN.MoodNegativeTip>
+  <RMN.MoodPositive>Good mood</RMN.MoodPositive>
+  <RMN.MoodPositiveTip>Scales positive mood effects.</RMN.MoodPositiveTip>
+  <RMN.OpinionNegative>Bad opinion</RMN.OpinionNegative>
+  <RMN.OpinionNegativeTip>Scales negative opinion effects, the ones that make pawns dislike each other.</RMN.OpinionNegativeTip>
+  <RMN.OpinionPositive>Good opinion</RMN.OpinionPositive>
+  <RMN.OpinionPositiveTip>Scales positive opinion effects.</RMN.OpinionPositiveTip>
+  <RMN.Duration>Duration</RMN.Duration>
+  <RMN.DurationTip>Scales how long memories last. Thoughts that come and go with a situation (cold, darkness, an ugly room) are not affected.</RMN.DurationTip>
+
+  <!-- Categories -->
+  <RMN.Category.Reset>Reset category</RMN.Category.Reset>
+  <RMN.Category.ApplyToAll>Copy to every category</RMN.Category.ApplyToAll>
+  <RMN.Category.ApplyToAllConfirm>Copy the {0} sliders to every category? This overwrites all of them.</RMN.Category.ApplyToAllConfirm>
+
+  <!-- Thoughts -->
+  <RMN.Search>Search</RMN.Search>
+  <RMN.ShownCount>Showing {0} of {1}</RMN.ShownCount>
+  <RMN.Filter.AllCategories>All categories</RMN.Filter.AllCategories>
+  <RMN.Filter.AllMods>All mods</RMN.Filter.AllMods>
+  <RMN.Filter.OverriddenOnly>Only changed</RMN.Filter.OverriddenOnly>
+  <RMN.Filter.Sign.Any>Good and bad</RMN.Filter.Sign.Any>
+  <RMN.Filter.Sign.Negative>Bad only</RMN.Filter.Sign.Negative>
+  <RMN.Filter.Sign.Positive>Good only</RMN.Filter.Sign.Positive>
+  <RMN.Bulk.Reset>Reset shown</RMN.Bulk.Reset>
+  <RMN.Bulk.ResetConfirm>Put all {0} shown thoughts back on their category settings?</RMN.Bulk.ResetConfirm>
+  <RMN.Bulk.Mute>Mute shown</RMN.Bulk.Mute>
+  <RMN.Bulk.MuteConfirm>Mute all {0} shown thoughts? They will give no mood or opinion at all.</RMN.Bulk.MuteConfirm>
+  <RMN.Thought.SelectHint>Click a thought to change it on its own.</RMN.Thought.SelectHint>
+  <RMN.Thought.Inherit>Use category</RMN.Thought.Inherit>
+  <RMN.Thought.Custom>Custom</RMN.Thought.Custom>
+  <RMN.Thought.Mute>Mute</RMN.Thought.Mute>
+  <RMN.Thought.Inheriting>Follows the {0} category.</RMN.Thought.Inheriting>
+  <RMN.Thought.CodeComputed>The game works out this thought's mood or opinion in code, so this mod can't change or mute it.</RMN.Thought.CodeComputed>
+  <RMN.Thought.IsMuted>Muted. This thought gives no mood or opinion and is hidden from the needs tab.</RMN.Thought.IsMuted>
+
+  <!-- Mental breaks -->
+  <RMN.Breaks.Intro>When colonists snap and what happens when they do.</RMN.Breaks.Intro>
+  <RMN.Breaks.Threshold>Break threshold</RMN.Breaks.Threshold>
+  <RMN.Breaks.ThresholdTip>Scales the mood at which pawns start having mental breaks. Lower means they hold out longer. Trait modifiers like Iron-willed still stack on top.</RMN.Breaks.ThresholdTip>
+  <RMN.Breaks.ThresholdReadout>Minor breaks start below {0} mood (vanilla {1}).</RMN.Breaks.ThresholdReadout>
+  <RMN.Breaks.StateDuration>Break length</RMN.Breaks.StateDuration>
+  <RMN.Breaks.StateDurationTip>Scales how long a mental break lasts once it starts.</RMN.Breaks.StateDurationTip>
+  <RMN.Breaks.CommonalityTip>How often this break gets picked compared to the others. x0 means it never happens.</RMN.Breaks.CommonalityTip>
+  <RMN.Breaks.Intensity.None>none</RMN.Breaks.Intensity.None>
+  <RMN.Breaks.Intensity.Minor>minor</RMN.Breaks.Intensity.Minor>
+  <RMN.Breaks.Intensity.Major>major</RMN.Breaks.Intensity.Major>
+  <RMN.Breaks.Intensity.Extreme>extreme</RMN.Breaks.Intensity.Extreme>
+  <RMN.Breaks.Anyone>Anyone</RMN.Breaks.Anyone>
+  <RMN.Breaks.Requires>Needs {0}</RMN.Breaks.Requires>
+  <RMN.Breaks.VanillaGate>Vanilla requirement</RMN.Breaks.VanillaGate>
+
+  <!-- Needs -->
+  <RMN.Needs.Intro>Base mood is where a colonist with no thoughts at all sits. The rates below control how fast drifting needs like mood, beauty and comfort catch up to where they are heading.</RMN.Needs.Intro>
+  <RMN.Needs.Baseline>Base mood</RMN.Needs.Baseline>
+  <RMN.Needs.BaselineTip>Mood points added to every colonist's starting mood.</RMN.Needs.BaselineTip>
+  <RMN.Needs.BaselineReadout>Base mood is {0} (vanilla {1}).</RMN.Needs.BaselineReadout>
+  <RMN.Needs.Rise>Rises</RMN.Needs.Rise>
+  <RMN.Needs.RiseTip>How fast this need climbs when things get better.</RMN.Needs.RiseTip>
+  <RMN.Needs.Fall>Falls</RMN.Needs.Fall>
+  <RMN.Needs.FallTip>How fast this need drops when things get worse.</RMN.Needs.FallTip>
+
+  <!-- Battle focus -->
+  <RMN.Battle.Intro>Colonists who are drafted or were just in a fight ignore small bad memories from the categories you pick. Nobody cares that they ate without a table while raiders are at the door. Only checked when a memory is gained, never every tick.</RMN.Battle.Intro>
+  <RMN.Battle.Enabled>Enable battle focus</RMN.Battle.Enabled>
+  <RMN.Battle.MaxMood>Ignore memories up to</RMN.Battle.MaxMood>
+  <RMN.Battle.MaxMoodTip>Bad memories this size or smaller are ignored in combat. Anything worse still lands.</RMN.Battle.MaxMoodTip>
+  <RMN.Battle.Window>Counts as in combat for</RMN.Battle.Window>
+  <RMN.Battle.WindowTip>How long after fighting a colonist still has battle focus. Drafted colonists always have it.</RMN.Battle.WindowTip>
+  <RMN.Battle.Hours>{0} h</RMN.Battle.Hours>
+  <RMN.Battle.Categories>Categories battle focus applies to:</RMN.Battle.Categories>
+
+</LanguageData>
