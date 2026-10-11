@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+/1.6/Assemblies/
+/dist/
+.claude/
+TestResults/
