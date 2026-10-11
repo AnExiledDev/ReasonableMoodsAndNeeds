@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Test the pure core
+        run: dotnet test Tests/ReasonableMoodsAndNeeds.Tests -c Release
+
+      - name: Build the mod assembly
+        run: dotnet build Source/ReasonableMoodsAndNeeds -c Release
+
+      - name: Package the mod folder
+        run: |
+          mkdir -p dist/ReasonableMoodsAndNeeds
+          cp -r About Common 1.6 LoadFolders.xml LICENSE dist/ReasonableMoodsAndNeeds/
+          test -f dist/ReasonableMoodsAndNeeds/1.6/Assemblies/ReasonableMoodsAndNeeds.dll
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ReasonableMoodsAndNeeds
+          path: dist/

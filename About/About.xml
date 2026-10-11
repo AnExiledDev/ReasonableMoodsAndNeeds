@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Reasonable Moods and Needs</name>
+  <author>AnExiledDev</author>
+  <packageId>AnExiledDev.ReasonableMoodsAndNeeds</packageId>
+  <url>https://github.com/AnExiledDev/ReasonableMoodsAndNeeds</url>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>Colonists in vanilla RimWorld fall apart over things nobody would care about. They eat one meal without a table, sleep on the floor for a night, see a corpse they walked past fifty times already, and somebody ends up berserk with a rifle. I made a mod for this back in B18 that cut the worst of it down with XML patches. This is the rebuild for 1.6, written from scratch in C#, and this time everything is adjustable.
+
+Every thought in the game gets sorted into one of 19 categories, food, sleep, corpses, death, social, romance, ideology and so on, so you can drag one slider and change a few hundred thoughts at once instead of hunting them down one at a time. Each category has its own sliders for bad mood, good mood, bad opinion, good opinion and how long memories last. If one thought still bugs you, you can override it on its own or mute it completely. Thoughts from other mods get sorted too, and anything the mod can't place lands in "everything else" where you can still tune it.
+
+Past thoughts, you can move the mental break threshold, change how long breaks last, make any break more or less common or turn it off, and change which trait a break needs, so berserk can require Psychopath if you want. You can raise base mood and change how fast mood, beauty and comfort drift. There's also an optional battle focus, where drafted colonists and anyone who was just in a fight ignore small bad memories from the categories you pick.
+
+Four presets get you started: Vanilla, Light, Reasonable and Relaxed. Reasonable is the default and it's close to what the old mod did. Settings can be copied to the clipboard and pasted on another save or shared with someone else.
+
+Performance was the main thing I cared about. Almost all of it works by rewriting the thought and break definitions once, when you close the settings window, so during play the game is just reading its own numbers and the mod costs nothing per tick. The only patch that runs in game is battle focus, it only fires when a pawn gains a memory, and it isn't installed at all while battle focus is off.
+
+Safe to add to an existing save. Removing it puts every number back to vanilla on the next launch, since nothing gets written into your save.
+
+Needs Harmony. Source is on GitHub under MIT.</description>
+</ModMetaData>
