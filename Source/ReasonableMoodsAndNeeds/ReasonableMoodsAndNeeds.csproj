@@ -1,13 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!--
+    One project, one build per game version: `dotnet build -p:RimWorldVersion=1.7`.
+    1.6 runs on Unity's Mono (net472, Harmony 2). 1.7 runs on the Waylith engine (net10.0, Harmony 3).
+  -->
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <RimWorldVersion Condition="'$(RimWorldVersion)' == ''">1.6</RimWorldVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>ReasonableMoodsAndNeeds</RootNamespace>
     <AssemblyName>ReasonableMoodsAndNeeds</AssemblyName>
-    <OutputPath>../../1.6/Assemblies/</OutputPath>
+    <OutputPath>../../$(RimWorldVersion)/Assemblies/</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <DebugType>none</DebugType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -15,9 +23,20 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
 
-  <ItemGroup>
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.6'">
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(RimWorldVersion)' == '1.6'">
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" />
     <PackageReference Include="Lib.Harmony" Version="2.4.2" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(RimWorldVersion)' == '1.7'">
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(RimWorldVersion)' == '1.7'">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.7.5000-unstable" />
+    <PackageReference Include="Lib.Harmony" Version="3.0.0-rc.5" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>
