@@ -21,11 +21,15 @@ jobs:
       - name: Build the mod assembly
         run: dotnet build Source/ReasonableMoodsAndNeeds -c Release
 
+      - name: Build the mod assembly for 1.7
+        run: dotnet build Source/ReasonableMoodsAndNeeds -c Release -p:RimWorldVersion=1.7
+
       - name: Package the mod folder
         run: |
           mkdir -p dist/ReasonableMoodsAndNeeds
-          cp -r About Common 1.6 LoadFolders.xml LICENSE dist/ReasonableMoodsAndNeeds/
+          cp -r About Common 1.6 1.7 LoadFolders.xml LICENSE dist/ReasonableMoodsAndNeeds/
           test -f dist/ReasonableMoodsAndNeeds/1.6/Assemblies/ReasonableMoodsAndNeeds.dll
+          test -f dist/ReasonableMoodsAndNeeds/1.7/Assemblies/ReasonableMoodsAndNeeds.dll
 
       - uses: actions/upload-artifact@v4
         with:

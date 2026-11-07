@@ -12,7 +12,7 @@ Operator, 2026-10-11 (op:2026-10-11-0736-7e53):
 ## What is already verified
 
 - The pure core (math, presets, codec, classifier) has unit tests, run in CI.
-- The mod assembly compiles against the RimWorld 1.6 reference assemblies with warnings as errors.
+- The mod assembly compiles against the RimWorld 1.6 and 1.7 reference assemblies with warnings as errors.
 - Category coverage was simulated against 877 vanilla and DLC thoughts.
 
 Nothing has been run inside RimWorld. RimWorld isn't installed on the build machine.
